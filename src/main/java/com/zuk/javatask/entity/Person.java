@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 @Table(name = "Person")
@@ -28,7 +29,7 @@ public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Long id;
 
     @Column(name = "name")
     private String name;
@@ -54,6 +55,12 @@ public class Person {
     @Column(name = "password")
     private String password;
 
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_roles",
+            joinColumns = {@JoinColumn(name = "person_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "person_id", referencedColumnName = "id")})
+    private List<Role> roles;
 
 }
 
