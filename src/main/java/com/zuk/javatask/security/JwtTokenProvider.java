@@ -1,6 +1,5 @@
 package com.zuk.javatask.security;
 
-import com.zuk.javatask.entity.Role;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.JwtException;
@@ -49,7 +48,7 @@ public class JwtTokenProvider {
         secret = Base64.getEncoder().encodeToString(secret.getBytes());
     }
 
-    public String createToken(String username, List<Role> roles) {
+    public String createToken(String username, List<String> roles) {
 
         Claims claims = Jwts.claims().setSubject(username);
         claims.put("roles", getRoleNames(roles));
@@ -97,12 +96,9 @@ public class JwtTokenProvider {
         }
     }
 
-    public List<String> getRoleNames(List<Role> userRoles) {
-        List<String> result = new ArrayList<>();
+    public List<String> getRoleNames(List<String> userRoles) {
 
-        userRoles.forEach(role -> {
-            result.add(role.getName());
-        });
+        List<String> result = new ArrayList<>(userRoles);
 
         return result;
     }

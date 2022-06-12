@@ -15,7 +15,7 @@ public class Person {
     public Person() {
 
     }
-    public Person(String name, String surname, String email, String phone, Timestamp birthday, Integer age, String username, String password) {
+    public Person(String name, String surname, String email, String phone, Timestamp birthday, Integer age, String username, String password,Role role) {
         this.name = name;
         this.surname = surname;
         this.email = email;
@@ -24,6 +24,7 @@ public class Person {
         this.age = age;
         this.username = username;
         this.password = password;
+        this.role = role;
     }
 
     @Id
@@ -55,12 +56,8 @@ public class Person {
     @Column(name = "password")
     private String password;
 
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "person_roles",
-            joinColumns = {@JoinColumn(name = "person_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "person_id", referencedColumnName = "id")})
-    private List<Role> roles;
+    @Column(name = "role")
+    private Role role;
 
 }
 
