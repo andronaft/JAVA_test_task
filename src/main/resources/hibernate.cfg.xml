@@ -24,6 +24,8 @@
         <property name="hibernate.dbcp.maxIdle">10</property>
         <property name="hibernate.dbcp.minIdle">5</property>
         <property name="hibernate.dbcp.maxWaitMillis">-1</property>
+        <mapping class="com.zuk.javatask.entity.Role" />
+        <mapping class="com.zuk.javatask.entity.PersonRoles" />
         <mapping class="com.zuk.javatask.entity.Person" />
     </session-factory>
 </hibernate-configuration>

@@ -1,6 +1,7 @@
 package com.zuk.javatask.security;
 
 import com.zuk.javatask.entity.Person;
+import com.zuk.javatask.service.PersonService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -14,16 +15,16 @@ import org.springframework.stereotype.Service;
 public class JwtUserDetailsService implements UserDetailsService {
 
     //TODO(add userservice)
-    private final UserService userService;
+    private final PersonService personService;
 
     @Autowired
-    public JwtUserDetailsService(@Lazy UserService userService) {
-        this.userService = userService;
+    public JwtUserDetailsService(@Lazy PersonService personService) {
+        this.personService = personService;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Person user = userService.findByUsername(username);
+        Person user = personService.findByUsername(username);
 
         if (user == null) {
             throw new UsernameNotFoundException("User with username: " + username + " not found");
@@ -34,6 +35,4 @@ public class JwtUserDetailsService implements UserDetailsService {
         return jwtUser;
     }
 }
-© 2022 GitHub, Inc.
-        Terms
-        Privacy
+
