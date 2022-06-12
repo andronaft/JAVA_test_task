@@ -5,7 +5,6 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.List;
 
 @Entity
 @Table(name = "Person")
@@ -38,10 +37,10 @@ public class Person {
     @Column(name = "surname")
     private String surname;
 
-    @Column(name = "email")
+    @Column(name = "email", unique=true)
     private String email;
 
-    @Column(name = "phine")
+    @Column(name = "phine", unique=true)
     private String phone;
 
     @Column(name = "birthday")
@@ -50,7 +49,7 @@ public class Person {
     @Column(name = "age")//not sure that it should be in db
     private Integer age;
 
-    @Column(name = "username")
+    @Column(name = "username", unique=true)
     private String username;
 
     @Column(name = "password")
