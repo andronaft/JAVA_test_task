@@ -10,3 +10,8 @@
 
 `docker run --name=javatask -p 8081:8081 javatask`
 
+**Postman**
+src/main/resources/javatask.json postmane v2.1
+login request
+
+

@@ -11,6 +11,6 @@ import org.springframework.stereotype.Repository;
 public interface PersonRepository extends PagingAndSortingRepository<Person, Long> {
     Person findByUsername(String username);
     Page<Person> findAll(Pageable pageable);
-    Page<Person> findAllOrderedByAge(Pageable pageable);
+
 
 }

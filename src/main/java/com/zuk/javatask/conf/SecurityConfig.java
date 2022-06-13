@@ -1,6 +1,7 @@
 package com.zuk.javatask.conf;
 
 
+import com.zuk.javatask.entity.Role;
 import com.zuk.javatask.security.JwtConfigurer;
 import com.zuk.javatask.security.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String ADMIN_ENDPOINT = "/api/admin/**";
     private static final String GUEST_ENDPOINT = "/api/guest/**";
+    private static final String AUTH_ENDPOINT = "/api/auth/**";
 
 
     @Autowired
@@ -41,6 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
+                .antMatchers(AUTH_ENDPOINT).permitAll()
                 .antMatchers(GUEST_ENDPOINT).hasRole("GUEST")
                 .antMatchers(ADMIN_ENDPOINT).hasRole("ADMIN")
                 .anyRequest().authenticated()
